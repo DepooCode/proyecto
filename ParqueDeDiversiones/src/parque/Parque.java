@@ -7,11 +7,13 @@ public class Parque {
     private List<Empleado> listaEmpleados;
     private List<Atraccion> listaAtracciones;
     private List<Espectaculo> listaEspectaculos;
+    private List<Cliente> listaClientes;
 
     public Parque() {
         listaEmpleados = new ArrayList<>();
         listaAtracciones = new ArrayList<>();
         listaEspectaculos = new ArrayList<>();
+        listaClientes = new ArrayList<>();
     }
 
     public void agregarEmpleado(Empleado empleado) {
@@ -48,5 +50,18 @@ public class Parque {
 
     public List<Espectaculo> getListaEspectaculos() {
         return listaEspectaculos;
+    }
+    public List<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+    
+    public void agregarCliente(Cliente cliente) {
+        if (!listaClientes.contains(cliente)) {
+            listaClientes.add(cliente);
+        }
+    }
+    
+    public void eliminarCliente(Cliente cliente) {
+        listaClientes.remove(cliente);
     }
 }

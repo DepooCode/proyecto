@@ -1,6 +1,6 @@
 package parque;
 
-enum CategoriaTiquete {
+public enum CategoriaTiquete {
     BASICO,
     FAMILIAR,
     ORO,

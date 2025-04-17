@@ -42,6 +42,7 @@ public abstract class Tiquete {
         this.utilizado = true;
     }
 
-   
+    public abstract boolean esValido(Date fechaUso);
+
 }
 

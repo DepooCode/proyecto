@@ -24,10 +24,22 @@ public class Cultural extends Atraccion {
     }
     @Override
     public boolean revisarRegistrarTiquete(Tiquete tiquete) {
-        if (this.getExclusividad().equals(tiquete.getCategoria())) {
-            return true;
-        }
+            if (tiquete instanceof TiqueteEntradaIndividual) {
+                TiqueteEntradaIndividual individual = (TiqueteEntradaIndividual) tiquete;
+                if (individual.getAtraccionAsociad() == this && !individual.isUtilizado()) {
+                    individual.usarTiquete(); 
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         
-        return false; 
-    }
+            
+            if (this.getExclusividad().equals(tiquete.getCategoria()) && !tiquete.isUtilizado()) {
+                tiquete.usarTiquete(); 
+                return true;
+            }
+        
+            return false;
+    } 
 }

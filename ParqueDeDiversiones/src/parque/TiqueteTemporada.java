@@ -17,4 +17,8 @@ public class TiqueteTemporada extends Tiquete {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
+    @Override
+    public boolean esValido(Date fechaUso) {
+        return !utilizado && fechaUso.before(fechaFin);
+    }
 }

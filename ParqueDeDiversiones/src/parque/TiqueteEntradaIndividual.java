@@ -17,4 +17,8 @@ public class TiqueteEntradaIndividual extends Tiquete {
     public void setAtraccionAsociada(Atraccion atraccion) {
         this.atraccionAsociada = atraccion;
     }
+    @Override
+    public boolean esValido(Date fechaUso) {
+        return !utilizado; 
+    }
 }

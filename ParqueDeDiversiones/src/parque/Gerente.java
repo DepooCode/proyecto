@@ -51,7 +51,7 @@ public class Gerente extends Empleado {
     
 
     public void eliminarEmpleado(EmpleadoNormal empleado) {
-        if (!getListaEmpleadosGest().contains(empleado)) {
+        if (getListaEmpleadosGest().contains(empleado)) {
             getListaEmpleadosGest().remove(empleado);
             System.out.println("Empleado eliminado correctamente.");
         } else {

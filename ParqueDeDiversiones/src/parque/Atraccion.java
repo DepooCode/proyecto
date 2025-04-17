@@ -2,18 +2,18 @@ package parque;
 
 import java.util.List;
 
-public abstract class Atraccion {
+public abstract class Atraccion extends LugarTrabajo{
     private String exclusividad;
     private String ubicacion;
     private int cupoMaximo;
     private int numeroEncargadosMin;
     private boolean deTemporada;
     private List<String> restriccionesClima;
-    private String nombre;
+    
 
     public Atraccion(String nombre, String exclusividad, String ubicacion, int cupoMaximo, 
                      int numeroEncargadosMin, boolean deTemporada, List<String> restriccionesClima) {
-        this.nombre = nombre;
+        super(nombre);
         this.exclusividad = exclusividad;
         this.ubicacion = ubicacion;
         this.cupoMaximo = cupoMaximo;

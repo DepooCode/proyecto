@@ -3,7 +3,7 @@ package parque;
 import java.util.TreeMap;
 
 public class Taquilla extends Servicio {
-    private TreeMap<Integer, String> mapaTiquetes;
+    private TreeMap<String, Integer> mapaTiquetes;
 
     public Taquilla(String nombre, String tipo) {
         super(nombre, tipo);
@@ -27,10 +27,10 @@ public class Taquilla extends Servicio {
     }
 
     public void venderFacturarTiquete(Tiquete tiquete, int precio) {
-        mapaTiquetes.put(precio, tiquete.toString());
+        mapaTiquetes.put(tiquete.getId(), precio);
     }
 
-    public TreeMap<Integer, String> getMapaTiquetes() {
+    public TreeMap<String, Integer> getMapaTiquetes() {
         return mapaTiquetes;
     }
 }

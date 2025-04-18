@@ -11,8 +11,8 @@ public class ParqueTest {
     @Test
     public void testAgregarYEliminarEmpleado() {
         Parque parque = new Parque();
-        EmpleadoNormal empleado1 = new EmpleadoNormal("1", "Juan", "Cajero", 2);
-        EmpleadoNormal empleado2 = new EmpleadoNormal("2", "Maria", "Operador", 3);
+        EmpleadoNormal empleado1 = new EmpleadoNormal("1", "Juan", "Cajero", 2, "emppleado1", "123");
+        EmpleadoNormal empleado2 = new EmpleadoNormal("2", "Maria", "Operador", 3, "empleado2", "123");
 
         parque.agregarEmpleado(empleado1);
         parque.agregarEmpleado(empleado2);

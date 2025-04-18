@@ -5,10 +5,14 @@ public class Empleado {
     private String nombre;
     private String usuario;
     private String contrasenia;
+    private boolean iniciado;
 
-    public Empleado(String id, String nombre) {
+    public Empleado(String id, String nombre, String usuario,String contrasenia) {
         this.id = id;
         this.nombre = nombre;
+        this.iniciado = false;
+        this.contrasenia= contrasenia;
+        this.usuario = usuario;
     }
 
     public String getId() {
@@ -21,7 +25,6 @@ public class Empleado {
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -29,7 +32,6 @@ public class Empleado {
     public String getUsuario() {
         return usuario;
     }
-
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
@@ -37,8 +39,25 @@ public class Empleado {
     public String getContrasenia() {
         return contrasenia;
     }
-
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+    public boolean isIniciado() {
+        return iniciado;
+    }
+
+    public boolean iniciarSesion(String usuario, String contrasenia) {
+        if (this.usuario != null && this.contrasenia != null &&
+            this.usuario.equals(usuario) && this.contrasenia.equals(contrasenia)) {
+            iniciado = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void cerrarSesion() {
+        iniciado = false;
+    }
+    
 }

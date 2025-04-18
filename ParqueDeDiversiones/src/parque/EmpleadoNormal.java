@@ -7,8 +7,8 @@ public class EmpleadoNormal extends Empleado {
     private int experiencia;
     public List<Turno> turnosAsignados;
 
-    public EmpleadoNormal(String id, String nombre, String tipo, int experiencia) {
-        super(id, nombre);
+    public EmpleadoNormal(String id, String nombre, String tipo, int experiencia, String usuario, String contrasenia) {
+        super(id, nombre, usuario, contrasenia);
         this.tipo = tipo;
         this.experiencia = experiencia;
         this.turnosAsignados = new ArrayList<Turno>();

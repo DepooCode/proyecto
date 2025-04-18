@@ -17,11 +17,13 @@ public class GerenteTest {
 
     @BeforeEach
     public void setUp() {
-        gerente = new Gerente("G1", "Laura");
-        empleado = new EmpleadoNormal("E1", "Juan", "Operador", 2);
+        gerente = new Gerente("G1", "Laura", "gerente", "1234");
+        empleado = new EmpleadoNormal("E1", "Juan", "Operador", 2, "empleadoNormal", "1234");
         atraccion = new Cultural("Museo", "General", "Zona A", 30, 2, new ArrayList<>(), false, 10);
         espectaculo = new Espectaculo("Show Mágico", java.time.LocalTime.of(15, 0), new Date(), new ArrayList<>(), false);
         turno = new Turno(new Date(), "Mañana", new LugarTrabajo("Zona A") {});
+        
+        gerente.iniciarSesion("gerente", "1234");
     }
 
     @Test
@@ -90,6 +92,14 @@ public class GerenteTest {
     public void testGetEmpleadoNoExistente() {
         assertNull(gerente.getEmpleado(empleado));
     }
+    @Test
+    public void testAgregarEmpleadoSinIniciarSesion() {
+    gerente.cerrarSesion();
+
+    gerente.agregarEmpleado(empleado);
+
+    assertFalse(gerente.getListaEmpleadosGest().contains(empleado));
+}
 }
 
 

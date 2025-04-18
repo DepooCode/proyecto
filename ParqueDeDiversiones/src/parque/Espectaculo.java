@@ -57,4 +57,7 @@ public class Espectaculo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public void setDeTemporada(boolean deTemporada){
+        this.deTemporada= deTemporada;
+    }
 }

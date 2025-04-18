@@ -3,6 +3,8 @@ import parque.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -100,6 +102,27 @@ public class GerenteTest {
 
     assertFalse(gerente.getListaEmpleadosGest().contains(empleado));
 }
+    @Test
+    public void testGestionarAtraccionConCambioDeNombre() {
+    String input = "1\nNueva Rueda\n"; // Opción 1 para cambiar el nombre, "Nueva Rueda" es el nuevo nombre
+    InputStream in = new ByteArrayInputStream(input.getBytes());
+    System.setIn(in);
+
+    gerente.gestionarAtraccion(atraccion);
+
+    assertEquals("Nueva Rueda", atraccion.getNombre());
+
+    }
+    @Test
+    public void testGestionarEspectaculoConCambioDeNombre() {
+        String input = "1\nNuevo Show Mágico\n"; // Opción 1 para cambiar el nombre, seguido de "Nuevo Show Mágico"
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        gerente.gestionarEspectaculo(espectaculo);
+
+        assertEquals("Nuevo Show Mágico", espectaculo.getNombre());
+    }
 }
 
 

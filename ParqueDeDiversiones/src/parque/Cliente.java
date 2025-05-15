@@ -1,9 +1,10 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public class Cliente implements Persistable {
 
     private String usuario;
     private String contrasena;
@@ -69,7 +70,6 @@ public class Cliente {
         return iniciado;
     }
 
-
     public String getUsuario() {
         return usuario;
     }
@@ -86,5 +86,21 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
+    // Implementación de Persistable
+    @Override
+    public String getId() {
+        return usuario;
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Cliente";
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente: " + usuario + " | Descuento: " + tieneDescuento + " | Tiquetes: " + tiquetesComprados.size();
+    }
 }
+
 

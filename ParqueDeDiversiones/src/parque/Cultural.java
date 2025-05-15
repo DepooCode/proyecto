@@ -11,7 +11,6 @@ public class Cultural extends Atraccion {
                     boolean deTemporada, int minEdad) {
 
         super(nombre, exclusividad, ubicacion, cupoMaximo, numEncargadosMin, deTemporada, restriccionesClima);
-
         this.minEdad = minEdad;
     }
 
@@ -22,24 +21,35 @@ public class Cultural extends Atraccion {
     public void setMinEdad(int minEdad) {
         this.minEdad = minEdad;
     }
+
     @Override
     public boolean revisarRegistrarTiquete(Tiquete tiquete) {
-            if (tiquete instanceof TiqueteEntradaIndividual) {
-                TiqueteEntradaIndividual individual = (TiqueteEntradaIndividual) tiquete;
-                if (individual.getAtraccionAsociad() == this && !individual.isUtilizado()) {
-                    individual.usarTiquete(); 
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        
-            
-            if (this.getExclusividad().equals(tiquete.getCategoria()) && !tiquete.isUtilizado()) {
-                tiquete.usarTiquete(); 
+        if (tiquete instanceof TiqueteEntradaIndividual) {
+            TiqueteEntradaIndividual individual = (TiqueteEntradaIndividual) tiquete;
+            if (individual.getAtraccionAsociad() == this && !individual.isUtilizado()) {
+                individual.usarTiquete(); 
                 return true;
+            } else {
+                return false;
             }
-        
-            return false;
-    } 
+        }
+
+        if (this.getExclusividad().equals(tiquete.getCategoria()) && !tiquete.isUtilizado()) {
+            tiquete.usarTiquete(); 
+            return true;
+        }
+
+        return false;
+    }
+
+
+    @Override
+    public String getTipoEntidad() {
+        return "Cultural";
+    }
+
+    @Override
+    public String toString() {
+        return "Atracción Cultural: " + getNombre() + " | Edad mínima: " + minEdad + " | Ubicación: " + getUbicacion();
+    }
 }

@@ -1,5 +1,6 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.TreeMap;
 
 public class Tienda extends Servicio{

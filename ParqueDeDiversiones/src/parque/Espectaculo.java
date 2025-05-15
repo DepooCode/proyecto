@@ -1,10 +1,11 @@
 package parque;
 
+import persistencia.Persistable;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
-public class Espectaculo {
+public class Espectaculo implements Persistable {
     private String nombre;
     private LocalTime horario;
     private Date fecha;
@@ -47,7 +48,8 @@ public class Espectaculo {
         return deTemporada;
     }
 
-    public void setNumeroEncargadosMin(int num) {
+    public void setDeTemporada(boolean deTemporada) {
+        this.deTemporada = deTemporada;
     }
 
     public String getNombre() {
@@ -57,7 +59,20 @@ public class Espectaculo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setDeTemporada(boolean deTemporada){
-        this.deTemporada= deTemporada;
+
+    // Persistable
+    @Override
+    public String getId() {
+        return nombre;
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Espectaculo";
+    }
+
+    @Override
+    public String toString() {
+        return "Espectáculo: " + nombre + " | Fecha: " + fecha + " | Hora: " + horario;
     }
 }

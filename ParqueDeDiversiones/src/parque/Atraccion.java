@@ -1,15 +1,15 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.List;
 
-public abstract class Atraccion extends LugarTrabajo{
+public abstract class Atraccion extends LugarTrabajo implements Persistable {
     private String exclusividad;
     private String ubicacion;
     private int cupoMaximo;
     private int numeroEncargadosMin;
     private boolean deTemporada;
     private List<String> restriccionesClima;
-    
 
     public Atraccion(String nombre, String exclusividad, String ubicacion, int cupoMaximo, 
                      int numeroEncargadosMin, boolean deTemporada, List<String> restriccionesClima) {
@@ -22,6 +22,7 @@ public abstract class Atraccion extends LugarTrabajo{
         this.restriccionesClima = restriccionesClima;
     }
 
+    // Getters y setters
     public String getExclusividad() {
         return exclusividad;
     }
@@ -76,6 +77,22 @@ public abstract class Atraccion extends LugarTrabajo{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    // Implementación de Persistable
+    @Override
+    public String getId() {
+        return nombre; 
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Atraccion";
+    }
+
+    @Override
+    public String toString() {
+        return "Atracción: " + nombre + ", ubicación: " + ubicacion + ", cupo: " + cupoMaximo;
     }
 
     public abstract boolean revisarRegistrarTiquete(Tiquete tiquete);

@@ -1,4 +1,5 @@
 package parque;
+
 import java.util.List;
 
 public class Mecanica extends Atraccion {
@@ -72,23 +73,35 @@ public class Mecanica extends Atraccion {
 
     @Override
     public boolean revisarRegistrarTiquete(Tiquete tiquete) {
-            if (tiquete instanceof TiqueteEntradaIndividual) {
-                TiqueteEntradaIndividual individual = (TiqueteEntradaIndividual) tiquete;
-                if (individual.getAtraccionAsociad() == this && !individual.isUtilizado()) {
-                    individual.usarTiquete(); 
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        
-            
-            if (this.getExclusividad().equals(tiquete.getCategoria()) && !tiquete.isUtilizado()) {
-                tiquete.usarTiquete(); 
+        if (tiquete instanceof TiqueteEntradaIndividual) {
+            TiqueteEntradaIndividual individual = (TiqueteEntradaIndividual) tiquete;
+            if (individual.getAtraccionAsociad() == this && !individual.isUtilizado()) {
+                individual.usarTiquete(); 
                 return true;
+            } else {
+                return false;
             }
-        
-            return false;
-    } 
+        }
+
+        if (this.getExclusividad().equals(tiquete.getCategoria()) && !tiquete.isUtilizado()) {
+            tiquete.usarTiquete(); 
+            return true;
+        }
+
+        return false;
+    }
+
+
+    @Override
+    public String getTipoEntidad() {
+        return "Mecanica";
+    }
+
+    @Override
+    public String toString() {
+        return "Atracción Mecánica: " + getNombre() + " | Nivel de riesgo: " + nivelRiesgo + " | Ubicación: " + getUbicacion();
+    }
+}
+
     
 }

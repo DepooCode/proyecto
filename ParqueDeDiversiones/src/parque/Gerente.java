@@ -281,3 +281,13 @@ public class Gerente extends Empleado {
         return listaEmpleadosGest;
     }
 }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Gerente";
+    }
+
+    @Override
+    public String toString() {
+        return "Gerente: " + getNombre() + " | ID: " + getId() + " | Usuarios gestionados: " + listaEmpleadosGest.size();
+    }

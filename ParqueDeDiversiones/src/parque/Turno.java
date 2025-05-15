@@ -1,10 +1,9 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.Date;
 
-
-
-public class Turno {
+public class Turno implements Persistable {
     private Date fecha;
     private String tipoTurno;
     private LugarTrabajo lugarAsignado;
@@ -48,4 +47,22 @@ public class Turno {
     public void setAsignado(boolean asignado) {  
         this.asignado = asignado;
     }
+
+    // Persistable
+    @Override
+    public String getId() {
+        return tipoTurno + "_" + fecha.getTime(); // único por combinación
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Turno";
+    }
+
+    @Override
+    public String toString() {
+        return "Turno: " + tipoTurno + " | Fecha: " + fecha + " | Asignado: " + asignado +
+               " | Lugar: " + (lugarAsignado != null ? lugarAsignado.getNombre() : "N/A");
+    }
 }
+

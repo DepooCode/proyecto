@@ -1,28 +1,28 @@
 package Util;
 
+import parque.*;
 import persistencia.GestorPersistencia;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsolaPersistencia {
     private GestorPersistencia gestor;
     private Scanner scanner;
-    
+
     public ConsolaPersistencia() {
         this.gestor = GestorPersistencia.getInstance();
         this.scanner = new Scanner(System.in);
     }
-    
+
     public void iniciar() {
         boolean salir = false;
-        
+
         while (!salir) {
             mostrarMenu();
             int opcion = leerOpcion();
-            
+
             switch (opcion) {
                 case 1:
                     cargarEntidad();
@@ -42,6 +42,9 @@ public class ConsolaPersistencia {
                 case 6:
                     verificarDatos();
                     break;
+                case 7:
+                    cargarDatosDePrueba();
+                    break;
                 case 0:
                     salir = true;
                     System.out.println("Saliendo de la consola de persistencia...");
@@ -49,13 +52,13 @@ public class ConsolaPersistencia {
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-            
+
             esperarEnter();
         }
-        
+
         scanner.close();
     }
-    
+
     private void mostrarMenu() {
         System.out.println("\n===== CONSOLA DE PERSISTENCIA =====");
         System.out.println("1. Cargar entidad específica");
@@ -64,10 +67,11 @@ public class ConsolaPersistencia {
         System.out.println("4. Crear backup");
         System.out.println("5. Restaurar desde backup");
         System.out.println("6. Verificar existencia de datos");
+        System.out.println("7. Cargar datos de prueba");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
     }
-    
+
     private int leerOpcion() {
         try {
             return Integer.parseInt(scanner.nextLine());
@@ -75,14 +79,14 @@ public class ConsolaPersistencia {
             return -1;
         }
     }
-    
+
     private void cargarEntidad() {
         System.out.print("Ingrese el tipo de entidad (Parque, Empleado, Atraccion, etc.): ");
         String tipo = scanner.nextLine();
-        
+
         System.out.print("Ingrese el ID de la entidad: ");
         String id = scanner.nextLine();
-        
+
         Object entidad = gestor.cargarEntidad(tipo, id);
         if (entidad != null) {
             System.out.println("Entidad cargada: " + entidad);
@@ -90,11 +94,11 @@ public class ConsolaPersistencia {
             System.out.println("No se pudo cargar la entidad.");
         }
     }
-    
+
     private void cargarTodasEntidades() {
         System.out.print("Ingrese el tipo de entidad (Parque, Empleado, Atraccion, etc.): ");
         String tipo = scanner.nextLine();
-        
+
         List<Object> entidades = gestor.cargarTodas(tipo);
         if (!entidades.isEmpty()) {
             System.out.println("Se cargaron " + entidades.size() + " entidades:");
@@ -105,54 +109,54 @@ public class ConsolaPersistencia {
             System.out.println("No se encontraron entidades del tipo: " + tipo);
         }
     }
-    
+
     private void eliminarEntidad() {
         System.out.print("Ingrese el tipo de entidad a eliminar: ");
         String tipo = scanner.nextLine();
-        
+
         System.out.print("Ingrese el ID de la entidad a eliminar: ");
         String id = scanner.nextLine();
-        
+
         System.out.print("¿Está seguro de eliminar esta entidad? (s/n): ");
         String confirmacion = scanner.nextLine();
-        
+
         if (confirmacion.equalsIgnoreCase("s")) {
             gestor.eliminarEntidad(tipo, id);
         } else {
             System.out.println("Operación cancelada.");
         }
     }
-    
+
     private void hacerBackup() {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String rutaBackup = "backups/backup_" + timestamp + "/";
-        
+
         System.out.println("Creando backup en: " + rutaBackup);
         gestor.hacerBackup(rutaBackup);
     }
-    
+
     private void restaurarBackup() {
         System.out.println("Backups disponibles:");
         File dirBackups = new File("backups/");
-        
+
         if (dirBackups.exists() && dirBackups.isDirectory()) {
             File[] backups = dirBackups.listFiles();
             if (backups != null && backups.length > 0) {
                 for (int i = 0; i < backups.length; i++) {
                     if (backups[i].isDirectory()) {
-                        System.out.println((i+1) + ". " + backups[i].getName());
+                        System.out.println((i + 1) + ". " + backups[i].getName());
                     }
                 }
-                
+
                 System.out.print("Seleccione el número del backup a restaurar (0 para cancelar): ");
                 try {
                     int seleccion = Integer.parseInt(scanner.nextLine());
                     if (seleccion > 0 && seleccion <= backups.length) {
                         System.out.print("¿Está seguro de restaurar? Se perderán los datos actuales (s/n): ");
                         String confirmacion = scanner.nextLine();
-                        
+
                         if (confirmacion.equalsIgnoreCase("s")) {
-                            gestor.restaurarBackup("backups/" + backups[seleccion-1].getName() + "/");
+                            gestor.restaurarBackup("backups/" + backups[seleccion - 1].getName() + "/");
                         } else {
                             System.out.println("Restauración cancelada.");
                         }
@@ -169,7 +173,7 @@ public class ConsolaPersistencia {
             System.out.println("Directorio de backups no encontrado.");
         }
     }
-    
+
     private void verificarDatos() {
         boolean existenDatos = gestor.existenDatos();
         if (existenDatos) {
@@ -178,12 +182,29 @@ public class ConsolaPersistencia {
             System.out.println("No se encontraron datos persistentes en el sistema.");
         }
     }
-    
+
+    private void cargarDatosDePrueba() {
+        Cliente cliente = new Cliente("juana123", "clave123", true);
+        Cultural cultural = new Cultural("TerrorShow", "FAMILIAR", "Zona C", 25, 2, List.of("lluvia"), false, 14);
+        Mecanica mecanica = new Mecanica("RuedaExtrema", "DIAMANTE", "Zona D", 15, 3, true,
+                List.of("viento"), 1.4f, 2.1f, 50, 120, List.of("hipertensión"), "ALTO");
+        EmpleadoNormal emp = new EmpleadoNormal("EMP007", "Mario", "Operador", 4, "marioUser", "marioPass");
+        TiqueteGeneral tiquete = new TiqueteGeneral("TGEN100", CategoriaTiquete.BASICO, false, new Date());
+
+        gestor.guardarEntidad(cliente);
+        gestor.guardarEntidad(cultural);
+        gestor.guardarEntidad(mecanica);
+        gestor.guardarEntidad(emp);
+        gestor.guardarEntidad(tiquete);
+
+        System.out.println("✅ Datos de prueba guardados con éxito.");
+    }
+
     private void esperarEnter() {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
-    
+
     public static void main(String[] args) {
         ConsolaPersistencia consola = new ConsolaPersistencia();
         consola.iniciar();

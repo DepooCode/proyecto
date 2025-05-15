@@ -1,8 +1,9 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.TreeMap;
 
-public class Cafeteria extends Servicio {
+public class Cafeteria extends Servicio implements Persistable {
 
     private boolean tieneCocinero;
     private TreeMap<Integer, String> comidaFacturadaVendida;
@@ -42,5 +43,21 @@ public class Cafeteria extends Servicio {
         } else {
             System.out.println("Error al facturar: datos inválidos.");
         }
+    }
+
+    // Implementación de Persistable
+    @Override
+    public String getId() {
+        return nombre; 
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Cafeteria";
+    }
+
+    @Override
+    public String toString() {
+        return "Cafetería: " + nombre + " | Cocinero: " + tieneCocinero + " | Cajero: " + tieneCajero;
     }
 }

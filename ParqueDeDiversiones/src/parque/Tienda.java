@@ -1,8 +1,9 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.TreeMap;
 
-public class Tienda {
+public class Tienda implements Persistable {
     private String nombre;
     private String tipo;
     private boolean tieneCajero;
@@ -47,4 +48,21 @@ public class Tienda {
     public TreeMap<Integer, String> getArticulosFacturadosVendidos() {
         return articulosFacturadosVendidos;
     }
+
+    // Persistable
+    @Override
+    public String getId() {
+        return nombre;
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Tienda";
+    }
+
+    @Override
+    public String toString() {
+        return "Tienda: " + nombre + " | Tipo: " + tipo + " | Artículos vendidos: " + articulosFacturadosVendidos.size();
+    }
 }
+

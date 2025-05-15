@@ -1,24 +1,32 @@
 package parque;
 
-public class ServicioGeneral extends LugarTrabajo {
-    private static final String NOMBRE = "ServicioGeneral";
+import persistencia.Persistable;
+
+public class ServicioGeneral extends LugarTrabajo implements Persistable {
+    private static final String NOMBRE_GENERAL = "ServicioGeneral";
 
     public ServicioGeneral(String nombre) {
         super(nombre); 
     }
 
-    @Override
-    public String getNombre() {
-        return super.getNombre();
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        super.setNombre(nombre);
-    }
-
     public String getNombreGeneral() {
-        return NOMBRE;
+        return NOMBRE_GENERAL;
+    }
+
+    // Implementación de Persistable
+    @Override
+    public String getId() {
+        return nombre;
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "ServicioGeneral";
+    }
+
+    @Override
+    public String toString() {
+        return "Servicio General: " + nombre;
     }
 }
 

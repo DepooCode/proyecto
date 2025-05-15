@@ -280,7 +280,7 @@ public class Gerente extends Empleado {
     public List<EmpleadoNormal> getListaEmpleadosGest() {
         return listaEmpleadosGest;
     }
-}
+
 
     @Override
     public String getTipoEntidad() {
@@ -291,3 +291,4 @@ public class Gerente extends Empleado {
     public String toString() {
         return "Gerente: " + getNombre() + " | ID: " + getId() + " | Usuarios gestionados: " + listaEmpleadosGest.size();
     }
+}

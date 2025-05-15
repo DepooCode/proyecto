@@ -104,4 +104,4 @@ public class Mecanica extends Atraccion {
 }
 
     
-}
+

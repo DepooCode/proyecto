@@ -2,7 +2,7 @@ package parque;
 
 import java.util.TreeMap;
 
-public class Tienda {
+public class Tienda extends Servicio{
     private String nombre;
     private String tipo;
     private boolean tieneCajero;
@@ -10,15 +10,12 @@ public class Tienda {
 
     // Constructor
     public Tienda(String nombre, String tipo) {
-        this.nombre = nombre;
-        this.tipo = tipo;
+        super(nombre, tipo);
         this.articulosFacturadosVendidos = new TreeMap<>();
     }
 
     // Métodos getter y setter
-    public String getNombre() {
-        return nombre;
-    }
+    
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -47,4 +44,5 @@ public class Tienda {
     public TreeMap<Integer, String> getArticulosFacturadosVendidos() {
         return articulosFacturadosVendidos;
     }
+    
 }

@@ -42,7 +42,7 @@ public class Cultural extends Atraccion {
         return false;
     }
 
-    // 👇 Esta es la clave para diferenciar Cultural de Atraccion
+
     @Override
     public String getTipoEntidad() {
         return "Cultural";

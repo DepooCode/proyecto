@@ -1,6 +1,8 @@
 package parque;
+
 import java.util.List;
 import java.util.ArrayList;
+
 public class EmpleadoNormal extends Empleado {
 
     private String tipo;
@@ -11,7 +13,7 @@ public class EmpleadoNormal extends Empleado {
         super(id, nombre, usuario, contrasenia);
         this.tipo = tipo;
         this.experiencia = experiencia;
-        this.turnosAsignados = new ArrayList<Turno>();
+        this.turnosAsignados = new ArrayList<>();
     }
 
     public String getTipo() {
@@ -29,7 +31,19 @@ public class EmpleadoNormal extends Empleado {
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
+
     public List<Turno> getTurnosAsignados() {
         return turnosAsignados;
+    }
+
+    // 👇 Este override es CLAVE para que se guarde como "EmpleadoNormal"
+    @Override
+    public String getTipoEntidad() {
+        return "EmpleadoNormal";
+    }
+
+    @Override
+    public String toString() {
+        return "EmpleadoNormal: " + getNombre() + " | ID: " + getId() + " | Experiencia: " + experiencia;
     }
 }

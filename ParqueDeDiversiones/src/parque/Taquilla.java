@@ -1,8 +1,9 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.TreeMap;
 
-public class Taquilla extends Servicio {
+public class Taquilla extends Servicio implements Persistable {
     private TreeMap<String, Integer> mapaTiquetes;
 
     public Taquilla(String nombre, String tipo) {
@@ -32,5 +33,21 @@ public class Taquilla extends Servicio {
 
     public TreeMap<String, Integer> getMapaTiquetes() {
         return mapaTiquetes;
+    }
+
+    // Persistable
+    @Override
+    public String getId() {
+        return nombre; // nombre heredado de LugarTrabajo
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Taquilla";
+    }
+
+    @Override
+    public String toString() {
+        return "Taquilla: " + nombre + " | Tiquetes vendidos: " + mapaTiquetes.size();
     }
 }

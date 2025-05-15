@@ -100,13 +100,13 @@ public class ConsolaGerente {
     }
 
     private static void crearEmpleado() {
-        EmpleadoNormal nuevo = CrearFactory.crearEmpleadoNormal(scanner);
+        EmpleadoNormal nuevo = ConsolaCrear.crearEmpleadoNormal(scanner);
         gerente.getListaEmpleadosGest().add(nuevo);
         System.out.println("Empleado agregado exitosamente.");
     }
 
     private static void crearAtraccion() {
-        Atraccion nuevaAtraccion = CrearFactory.crearAtraccion(scanner);
+        Atraccion nuevaAtraccion = ConsolaCrear.crearAtraccion(scanner);
         if (nuevaAtraccion != null) {
             System.out.println("Atracción creada: " + nuevaAtraccion.getNombre());
             gerente.getListaAtraccionesGest().add(nuevaAtraccion);
@@ -114,7 +114,7 @@ public class ConsolaGerente {
     }
 
     private static void crearEspectaculo() {
-        Espectaculo espectaculo = CrearFactory.crearEspectaculo(scanner);
+        Espectaculo espectaculo = ConsolaCrear.crearEspectaculo(scanner);
         System.out.println("Espectáculo creado: " + espectaculo.getNombre());
         gerente.getListaEspectaculosGest().add(espectaculo);
     }

@@ -9,7 +9,7 @@ import parque.EmpleadoNormal;
 import parque.Espectaculo;
 import parque.Mecanica;
 
-public class CrearFactory {
+public class ConsolaCrear {
 
     public static Atraccion crearAtraccion(Scanner scanner) {
         System.out.println("Seleccione el tipo de atracción:");

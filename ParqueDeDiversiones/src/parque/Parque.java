@@ -1,9 +1,10 @@
 package parque;
 
+import persistencia.Persistable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parque {
+public class Parque implements Persistable {
     private List<Empleado> listaEmpleados;
     private List<Atraccion> listaAtracciones;
     private List<Espectaculo> listaEspectaculos;
@@ -51,17 +52,37 @@ public class Parque {
     public List<Espectaculo> getListaEspectaculos() {
         return listaEspectaculos;
     }
+
     public List<Cliente> getListaClientes() {
         return listaClientes;
     }
-    
+
     public void agregarCliente(Cliente cliente) {
         if (!listaClientes.contains(cliente)) {
             listaClientes.add(cliente);
         }
     }
-    
+
     public void eliminarCliente(Cliente cliente) {
         listaClientes.remove(cliente);
+    }
+
+    // Persistable
+    @Override
+    public String getId() {
+        return "ParquePrincipal"; // ID único fijo
+    }
+
+    @Override
+    public String getTipoEntidad() {
+        return "Parque";
+    }
+
+    @Override
+    public String toString() {
+        return "Parque con " + listaEmpleados.size() + " empleados, " +
+               listaAtracciones.size() + " atracciones, " +
+               listaEspectaculos.size() + " espectáculos y " +
+               listaClientes.size() + " clientes.";
     }
 }

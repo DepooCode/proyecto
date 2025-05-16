@@ -94,19 +94,19 @@ public class ConsolaEmpleado {
                                                  List.of("Corazón débil"), "Alto");
 
         Turno turno1 = new Turno(new java.util.Date(), "Mañana", cafeteria);
-        turno1.setAsignado(true);  // Asignar este turno
+        turno1.setAsignado(true); 
 
         Turno turno2 = new Turno(new java.util.Date(), "Tarde", tienda);
-        turno2.setAsignado(true);  // Asignar este turno
+        turno2.setAsignado(true);  
 
         Turno turno3 = new Turno(new java.util.Date(), "Noche", taquilla);
-        turno3.setAsignado(true);  // Asignar este turno
+        turno3.setAsignado(true);  
 
         Turno turno4 = new Turno(new java.util.Date(), "Mañana", atraccionCultural);
-        turno4.setAsignado(true);  // Asignar este turno
+        turno4.setAsignado(true);  
 
         Turno turno5 = new Turno(new java.util.Date(), "Tarde", atraccionMecanica);
-        turno5.setAsignado(true);  // Asignar este turno
+        turno5.setAsignado(true);  
 
         
         empleado.getTurnosAsignados().add(turno1);
@@ -253,7 +253,7 @@ public class ConsolaEmpleado {
         System.out.println("2. Ver productos vendidos");
         System.out.print("Seleccione una opción: ");
         int opcion = scanner.nextInt();
-        scanner.nextLine();  // Limpiar buffer
+        scanner.nextLine();  
     
         switch (opcion) {
             case 1:

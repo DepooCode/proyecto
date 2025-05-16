@@ -14,7 +14,7 @@ import parque.Turno;
 public class ConsolaGerente {
     
     private static Scanner scanner = new Scanner(System.in);
-    private static Gerente gerente = new Gerente("1", "Juan Pérez", "juanp", "admin123");
+    private static Gerente gerente = new Gerente("1", "Juan", "juanp", "admin123");
 
     public static void main(String[] args) {
         if (iniciarSesion()) {

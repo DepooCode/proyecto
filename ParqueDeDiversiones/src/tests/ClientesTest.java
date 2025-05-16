@@ -45,7 +45,7 @@ public class ClientesTest {
         cliente.setUsuario("nuevoUsuario");
         cliente.setContrasena("nuevaClave");
         assertEquals("nuevoUsuario", cliente.getUsuario());
-        assertEquals("nuevaClave", cliente.getContrasena());
+        assertEquals("nuevaClave", cliente.getContrasenia());
     }
 
     @Test

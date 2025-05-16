@@ -4,7 +4,7 @@ import persistencia.Persistable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente implements Persistable {
+public class Cliente extends Usuario implements Persistable {
 
     private String usuario;
     private String contrasena;
@@ -13,8 +13,8 @@ public class Cliente implements Persistable {
     public boolean iniciado;
 
     public Cliente(String usuario, String contrasena, boolean tieneDescuento) {
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+    	super(usuario, contrasena);
+        
         this.tieneDescuento = tieneDescuento;
         this.tiquetesComprados = new ArrayList<>();
         this.iniciado = false;
@@ -54,37 +54,13 @@ public class Cliente implements Persistable {
         return tiquetesComprados.contains(tiquete);
     }
 
-    public boolean iniciarSesion(String usuario, String contrasena) {
-        if (this.usuario.equals(usuario) && this.contrasena.equals(contrasena)) {
-            this.iniciado = true;
-            return true;
-        }
-        return false;
-    }
+    
 
-    public void cerrarSesion() {
-        this.iniciado = false;
-    }
+    
 
-    public boolean isIniciado() {
-        return iniciado;
-    }
+    
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
+    
 
     // Implementación de Persistable
     @Override

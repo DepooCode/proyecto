@@ -35,6 +35,6 @@ public class CargadorInicialDeDatos {
         gestor.guardarEntidad(tiquete1);
         gestor.guardarEntidad(tiquete2);
 
-        System.out.println("✅ Datos de prueba guardados con éxito.");
+        System.out.println("Datos de prueba guardados con éxito.");
     }
 }

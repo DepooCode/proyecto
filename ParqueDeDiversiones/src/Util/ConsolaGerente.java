@@ -227,6 +227,7 @@ public class ConsolaGerente {
 
     
     private static void listarEmpleadosYTurnos() {
+    	
         System.out.println("\n--- Lista de Empleados y sus Turnos ---");
         for (Empleado emp : gerente.getListaEmpleadosGest()) {
             EmpleadoNormal empleado = (EmpleadoNormal) emp;

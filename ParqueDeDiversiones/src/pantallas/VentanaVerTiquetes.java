@@ -87,15 +87,13 @@ public class VentanaVerTiquetes extends JFrame {
         }
 
         try {
-           
+            
             String contenidoQR = generarContenidoQR(tiquete);
             BufferedImage qrImage = generarQR(contenidoQR, 300, 300);
 
-           
             ImageIcon icon = new ImageIcon(qrImage);
             JOptionPane.showMessageDialog(this, new JLabel(icon), "QR del Tiquete", JOptionPane.PLAIN_MESSAGE);
 
-           
             tiquete.setImpreso(true);
 
         } catch (Exception ex) {
@@ -104,13 +102,14 @@ public class VentanaVerTiquetes extends JFrame {
         }
     }
 
+ 
     private String generarContenidoQR(Tiquete tiquete) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fecha = sdf.format(new java.util.Date());
 
-        return "Tipo: " + tiquete.getClass().getSimpleName() +
-                "\nID: " + tiquete.getId() +
-                "\nFecha: " + fecha;
+        return "{\"tipo\":\"" + tiquete.getClass().getSimpleName() +
+               "\", \"id\":\"" + tiquete.getId() +
+               "\", \"fecha\":\"" + fecha + "\"}";
     }
 
     private BufferedImage generarQR(String texto, int ancho, int alto) throws WriterException {

@@ -53,6 +53,14 @@ public class Cliente extends Usuario implements Persistable {
     public boolean buscarTiqueteEnMisTiquetes(Tiquete tiquete) {
         return tiquetesComprados.contains(tiquete);
     }
+    public Tiquete buscarTiquetePorId(String id) {
+    for (Tiquete t : tiquetesComprados) {
+        if (t.getId().equals(id)) {
+            return t;
+        }
+    }
+    return null;
+}
 
     
 

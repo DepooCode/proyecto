@@ -8,8 +8,8 @@ public abstract class Tiquete {
     protected boolean utilizado;
     protected Date fechaFastPass;
     protected boolean fastPass;
-
-    // Constructor
+    protected boolean impreso = false; 
+    
     public Tiquete(String id, CategoriaTiquete categoria, boolean fastPass, Date fechaFastPass) {
         this.id = id;
         this.categoria = categoria;
@@ -17,7 +17,7 @@ public abstract class Tiquete {
         this.fechaFastPass = fechaFastPass;
     }
 
-    // Métodos getter y setter
+  
     public String getId() {
         return id;
     }
@@ -42,7 +42,18 @@ public abstract class Tiquete {
         this.utilizado = true;
     }
 
+   
+    public boolean isImpreso() {
+        return impreso;
+    }
+
+    public void setImpreso(boolean impreso) {
+        this.impreso = impreso;
+    }
+
     public abstract boolean esValido(Date fechaUso);
+}
+
 
 }
 
